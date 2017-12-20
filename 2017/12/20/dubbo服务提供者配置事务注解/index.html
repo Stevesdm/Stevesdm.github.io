@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="SpringBoot," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -95,18 +95,17 @@
 
 
 
-<meta name="description" content="前言项目中由于使用FastJson替换Jackon为默认Json序列化方式，配置redis使用Fastjson进行序列化 序列化配置redis传入的序列化器必须实现RedisSerializer接口： 123public void setValueSerializer(RedisSerializer&amp;lt;?&amp;gt; serializer) &amp;#123;    this.valueSerializ">
-<meta name="keywords" content="SpringBoot">
+<meta name="description" content="问题：dubbo服务提供者不能发布带事务注解的服务 原因在使用事务的时候，配置文件中使用了cglib的方式（proxy-target-class=&amp;quot;true&amp;quot;）为service生成代理，而当dubbo扫描注解的时候，这个被代理的Service并没有dubbo的@service，因为dubbo定义这个注解的时候，没有允许子类集成父类的注解。 解决方法 1.使用xml形式配置事务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="springboot配置spring-data-redis的FastJson序列化方式">
-<meta property="og:url" content="http://yoursite.com/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/index.html">
+<meta property="og:title" content="dubbo服务提供者配置事务注解">
+<meta property="og:url" content="http://yoursite.com/2017/12/20/dubbo服务提供者配置事务注解/index.html">
 <meta property="og:site_name" content="SteveJobson">
-<meta property="og:description" content="前言项目中由于使用FastJson替换Jackon为默认Json序列化方式，配置redis使用Fastjson进行序列化 序列化配置redis传入的序列化器必须实现RedisSerializer接口： 123public void setValueSerializer(RedisSerializer&amp;lt;?&amp;gt; serializer) &amp;#123;    this.valueSerializ">
+<meta property="og:description" content="问题：dubbo服务提供者不能发布带事务注解的服务 原因在使用事务的时候，配置文件中使用了cglib的方式（proxy-target-class=&amp;quot;true&amp;quot;）为service生成代理，而当dubbo扫描注解的时候，这个被代理的Service并没有dubbo的@service，因为dubbo定义这个注解的时候，没有允许子类集成父类的注解。 解决方法 1.使用xml形式配置事务">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T10:58:14.164Z">
+<meta property="og:updated_time" content="2017-12-20T11:16:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="springboot配置spring-data-redis的FastJson序列化方式">
-<meta name="twitter:description" content="前言项目中由于使用FastJson替换Jackon为默认Json序列化方式，配置redis使用Fastjson进行序列化 序列化配置redis传入的序列化器必须实现RedisSerializer接口： 123public void setValueSerializer(RedisSerializer&amp;lt;?&amp;gt; serializer) &amp;#123;    this.valueSerializ">
+<meta name="twitter:title" content="dubbo服务提供者配置事务注解">
+<meta name="twitter:description" content="问题：dubbo服务提供者不能发布带事务注解的服务 原因在使用事务的时候，配置文件中使用了cglib的方式（proxy-target-class=&amp;quot;true&amp;quot;）为service生成代理，而当dubbo扫描注解的时候，这个被代理的Service并没有dubbo的@service，因为dubbo定义这个注解的时候，没有允许子类集成父类的注解。 解决方法 1.使用xml形式配置事务">
 
 
 
@@ -136,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/20/dubbo服务提供者配置事务注解/"/>
 
 
 
 
 
-  <title>springboot配置spring-data-redis的FastJson序列化方式 | SteveJobson</title>
+  <title>dubbo服务提供者配置事务注解 | SteveJobson</title>
   
 
 
@@ -285,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/dubbo服务提供者配置事务注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Steve jobson">
@@ -302,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">springboot配置spring-data-redis的FastJson序列化方式</h1>
+          <h1 class="post-title" itemprop="name headline">dubbo服务提供者配置事务注解</h1>
         
 
         <div class="post-meta">
@@ -314,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T18:41:16+08:00">
-                2017-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T11:48:51+08:00">
+                2017-12-20
               </time>
             
 
@@ -351,7 +350,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  263
+                  154
                 </span>
               
 
@@ -388,15 +387,14 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><pre><code>项目中由于使用FastJson替换Jackon为默认Json序列化方式，配置redis使用Fastjson进行序列化
-</code></pre><h2 id="序列化配置"><a href="#序列化配置" class="headerlink" title="序列化配置"></a>序列化配置</h2><p>redis传入的序列化器必须实现RedisSerializer接口：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void setValueSerializer(RedisSerializer&lt;?&gt; serializer) &#123;</span><br><span class="line">    this.valueSerializer = serializer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义FastJson序列化器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class FastJson2JsonRedisSerializer&lt;T&gt; implements RedisSerializer&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    public static final Charset DEFAULT_CHARSET = Charset.forName(&quot;UTF-8&quot;);</span><br><span class="line"></span><br><span class="line">    private Class&lt;T&gt; clazz;</span><br><span class="line"></span><br><span class="line">    public FastJson2JsonRedisSerializer(Class&lt;T&gt; clazz) &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.clazz = clazz;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public byte[] serialize(T t) throws SerializationException &#123;</span><br><span class="line">        if (t == null) &#123;</span><br><span class="line">            return new byte[0];</span><br><span class="line">        &#125;</span><br><span class="line">        return JSON.toJSONString(t, SerializerFeature.WriteClassName).getBytes(DEFAULT_CHARSET);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public T deserialize(byte[] bytes) throws SerializationException &#123;</span><br><span class="line">        if (bytes == null || bytes.length &lt;= 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        String str = new String(bytes, DEFAULT_CHARSET);</span><br><span class="line"></span><br><span class="line">        return (T) JSON.parseObject(str, clazz);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>设置RedisTemplate的序列化方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class RedisConfig &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public RedisSerializer fastJson2JsonRedisSerializer() &#123;</span><br><span class="line">        return new FastJson2JsonRedisSerializer&lt;Object&gt;(Object.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public RedisTemplate initRedisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer fastJson2JsonRedisSerializer) throws Exception &#123;</span><br><span class="line">        RedisTemplate redisTemplate = new RedisTemplate();</span><br><span class="line">        redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">        redisTemplate.setValueSerializer(fastJson2JsonRedisSerializer);</span><br><span class="line">        redisTemplate.setKeySerializer(new StringRedisSerializer());</span><br><span class="line">        redisTemplate.afterPropertiesSet();</span><br><span class="line">        return redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完成序列化</p>
-<h2 id="更多操作查看Spring-data-redis文档"><a href="#更多操作查看Spring-data-redis文档" class="headerlink" title="更多操作查看Spring-data-redis文档"></a>更多操作查看<a href="https://docs.spring.io/spring-data/redis/docs/2.0.2.RELEASE/reference/html/" target="_blank" rel="noopener">Spring-data-redis文档</a></h2>
+        <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><pre><code>dubbo服务提供者不能发布带事务注解的服务
+</code></pre><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><pre><code>在使用事务的时候，配置文件中使用了cglib的方式（proxy-target-class=&quot;true&quot;）为service生成代理，而当dubbo扫描注解的时候，这个被代理的Service并没有dubbo的@service，因为dubbo定义这个注解的时候，没有允许子类集成父类的注解。
+</code></pre><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li>1.使用xml形式配置事务</li>
+<li>2.下载<a href="https://github.com/alibaba/dubbo" target="_blank" rel="noopener">dubbo源码</a>,并修改Dubbo @Serice注解，添加@Inherited，并重新本地发布</li>
+<li>3.更新版本，dubbo2.5.7版本以后已解决此问题。</li>
+</ul>
+
       
     </div>
 
@@ -427,12 +425,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/">springboot配置spring-data-redis的FastJson序列化方式</a></p>
+  <p><span>本文标题:</span><a href="/2017/12/20/dubbo服务提供者配置事务注解/">dubbo服务提供者配置事务注解</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Steve jobson 的个人博客">Steve jobson</a></p>
-  <p><span>发布时间:</span>2017年12月18日 - 18:12</p>
-  <p><span>最后更新:</span>2017年12月18日 - 18:12</p>
-  <p><span>原始链接:</span><a href="/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/" title="springboot配置spring-data-redis的FastJson序列化方式">http://yoursite.com/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2017年12月20日 - 11:12</p>
+  <p><span>最后更新:</span>2017年12月20日 - 19:12</p>
+  <p><span>原始链接:</span><a href="/2017/12/20/dubbo服务提供者配置事务注解/" title="dubbo服务提供者配置事务注解">http://yoursite.com/2017/12/20/dubbo服务提供者配置事务注解/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2017/12/20/dubbo服务提供者配置事务注解/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i>转载请保留原文链接及作者。</p>  
 </div>
@@ -464,12 +462,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
-          
-        </div>
-      
 
       
       
@@ -479,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/16/JavaWeb项目启动时加载热数据到缓存/" rel="next" title="JavaWeb项目启动时加载热数据到缓存">
-                <i class="fa fa-chevron-left"></i> JavaWeb项目启动时加载热数据到缓存
+              <a href="/2017/12/18/springboot配置spring-data-redis的FastJson序列化方式/" rel="next" title="springboot配置spring-data-redis的FastJson序列化方式">
+                <i class="fa fa-chevron-left"></i> springboot配置spring-data-redis的FastJson序列化方式
               </a>
             
           </div>
@@ -488,10 +480,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/20/dubbo服务提供者配置事务注解/" rel="prev" title="dubbo服务提供者配置事务注解">
-                dubbo服务提供者配置事务注解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -636,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化配置"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5E8F;&#x5217;&#x5316;&#x914D;&#x7F6E;" class="headerlink" title="&#x5E8F;&#x5217;&#x5316;&#x914D;&#x7F6E;"></a>&#x5E8F;&#x5217;&#x5316;&#x914D;&#x7F6E;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多操作查看Spring-data-redis文档"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x66F4;&#x591A;&#x64CD;&#x4F5C;&#x67E5;&#x770B;Spring-data-redis&#x6587;&#x6863;" class="headerlink" title="&#x66F4;&#x591A;&#x64CD;&#x4F5C;&#x67E5;&#x770B;Spring-data-redis&#x6587;&#x6863;"></a>&#x66F4;&#x591A;&#x64CD;&#x4F5C;&#x67E5;&#x770B;<a href="https://docs.spring.io/spring-data/redis/docs/2.0.2.RELEASE/reference/html/" target="_blank" rel="noopener">Spring-data-redis&#x6587;&#x6863;</a></span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95EE;&#x9898;&#xFF1A;" class="headerlink" title="&#x95EE;&#x9898;&#xFF1A;"></a>&#x95EE;&#x9898;&#xFF1A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x539F;&#x56E0;" class="headerlink" title="&#x539F;&#x56E0;"></a>&#x539F;&#x56E0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6CD5;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></a></li></ol></div>
             
 
           </div>
